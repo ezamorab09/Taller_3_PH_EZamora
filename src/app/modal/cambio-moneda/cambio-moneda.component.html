@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Conversión de Moneda</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Fecha de la cotización:</ion-label>
+    <ion-label>{{ fechaCotizacion }}</ion-label>
+  </ion-item>
+
+  <ng-container *ngIf="valorUSD">
+    <ion-item>
+      <ion-label position="stacked">Valor en USD:</ion-label>
+      <ion-label>{{ valorUSD | currency:'USD' }}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ingrese el Valor Local:</ion-label>
+      <ion-input type="number" [(ngModel)]="valorLocal" (ionChange)="convertir()"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="valorLocal !== 0">
+      <ion-label position="stacked">Valor en Pesos Chilenos:</ion-label>
+      <ion-label>{{ valorConvertido | currency:'CLP'}}</ion-label>
+    </ion-item>
+  </ng-container>
+</ion-content>

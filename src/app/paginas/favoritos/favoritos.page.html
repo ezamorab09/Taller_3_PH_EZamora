@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAInicio()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let favorito of favoritos">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ favorito.ciudad }}</ion-card-title>
+          <ion-card-subtitle>{{ favorito.pais }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-img [src]="favorito.imagen"></ion-img>
+          <p>Valor U$: {{ favorito.valor | currency:'USD' }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+
+
+
+</ion-content>
+

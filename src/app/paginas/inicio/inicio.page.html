@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Destinos Turisticos Frecuentes
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="irAFavoritos()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-searchbar placeholder="Elige una Ciudad" (ionInput)="filterDestinos($event.target.value)"></ion-searchbar>
+  <ion-grid>
+    <ion-row *ngFor="let destino of destinos">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card *ngIf="mostrarDestino(destino)">
+          <ion-card-content>
+            <div class="destination-container">
+              <ion-img class="destination-image" [src]="destino.imagen"></ion-img>
+
+              <div class="details">
+                <ion-card-header>
+                  <ion-card-title>{{ destino.ciudad }}</ion-card-title>
+                  <ion-card-subtitle>{{ destino.pais }}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  Valor U$: {{ destino.valor | currency:'USD' }}
+                </ion-card-content>
+              </div>
+              <div class="buttons">
+                <ion-button fill="clear" (click)="addToFavorites(destino)">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" (click)="deleteDestino(destino)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" (click)="openModal(destino.valor.toString())">
+                  <ion-icon name="cash-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="full-width-card centered-card">
+    <ion-card-header>
+      <ion-card-title>Aquí encontrarás tu destino soñado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button size="small" (click)="goToSearchPage()">Buscar Destinos</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
